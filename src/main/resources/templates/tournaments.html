@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Spring Boot CLI + Javascript</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="webjars/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('p').animate({
+                fontSize: '48px'
+            }, "slow");
+        });
+    </script>
+</head>
+<body>
+    <!--/*@thymesVar id="tournaments" type="java.util.List<se.atrosys.steenfast.model.Tournament>"*/-->
+    <!--/*@thymesVar id="tournament" type="se.atrosys.steenfast.model.Tournament"*/-->
+    <ul th:each="tournament : ${tournaments}">
+        <li th:text="${tournament.getName()}"></li>
+    </ul>
+</body>
+</html>
