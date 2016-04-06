@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import se.atrosys.steenfast.model.Tournament;
 import se.atrosys.steenfast.repository.TournamentRepository;
 
 /**
@@ -25,7 +26,8 @@ public class TournamentController {
 
 	@RequestMapping(value = "/tournaments", method = RequestMethod.GET)
 	public String tournaments(Model model) {
-		model.addAttribute("tournaments", tournamentRepository.findAll());
+		Iterable<Tournament> all = tournamentRepository.findAll();
+		model.addAttribute("tournaments", all);
 
 		return "tournaments";
 	}

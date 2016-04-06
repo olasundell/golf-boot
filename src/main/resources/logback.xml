@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--<jmxConfigurator />-->
+    <!--<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
+<!---->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+
+    <property name="CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+    <!--<include resource="org/springframework/boot/logging/logback/defaults.xml" />-->
+    <!--<include resource="org/springframework/boot/logging/logback/console-appender.xml" />-->
+    <property name="CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<pattern>%-5relative %-5level %logger{35} - %msg%n</pattern>-->
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="org.thymeleaf" level="debug"/>
+    <logger name="org.thymeleaf.TemplateEngine.CONFIG" level="info" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!--<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">-->
+        <!--<queueSize>512</queueSize>-->
+         <!--Threshold at 20%-->
+        <!--<discardingThreshold>102</discardingThreshold>-->
+        <!--<includeCallerData>true</includeCallerData>-->
+        <!--<maxFlushTime>1000</maxFlushTime>-->
+        <!--<appender-ref ref="CONSOLE" />-->
+    <!--</appender>-->
+
+    <!--<root level="INFO">-->
+        <!--<appender-ref ref="ASYNC" />-->
+    <!--</root>-->
+</configuration>

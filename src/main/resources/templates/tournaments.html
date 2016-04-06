@@ -1,8 +1,11 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Getting Started: Spring Boot CLI + Javascript</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/steenfastgolf.css"/>
+    <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <script src="webjars/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -13,10 +16,48 @@
     </script>
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-lg-2">
+            <img class="img-responsive hidden-sm hidden-xs" src="/left.jpg"/>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <p>Welcome</p>
+        </div>
+        <div sec:authorize="isAnonymous()">
+            <form th:action="@{/login}" method="post">
+                <div><label> User Name : <input type="text" name="username"/> </label></div>
+                <div><label> Password: <input type="password" name="password"/> </label></div>
+                <div><input type="submit" value="Sign In"/></div>
+            </form>
+        </div>
+        <div class="col-md-8 col-lg-8">
+            <div class="table-responsive">
+                <table th:each="tournament: ${tournaments}" class="table table-striped leaderboard">
+                    <thead>
+                    <tr>
+                        <th th:text="${tournament.name}"></th>
+                        <th th:text="${round.date}" th:each="round: ${tournament.rounds}">Runda</th>
+                        <th>Totalt</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="player: ${tournament.players}">
+                        <td class="player-name" th:text="${player.name}"></td>
+                        <td th:text="${round.getScores().get(player).getScore()}" th:each="round: ${tournament.rounds}"></td>
+                        <td class="average" th:text="${tournament.getTotalScoreForPlayer(player)}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <img class="img-responsive hidden-sm hidden-xs" src="right.jpg"/>
+        </div>
+    </div>
+</div>
     <!--/*@thymesVar id="tournaments" type="java.util.List<se.atrosys.steenfast.model.Tournament>"*/-->
     <!--/*@thymesVar id="tournament" type="se.atrosys.steenfast.model.Tournament"*/-->
-    <ul th:each="tournament : ${tournaments}">
-        <li th:text="${tournament.getName()}"></li>
-    </ul>
+
 </body>
 </html>
