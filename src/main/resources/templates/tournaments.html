@@ -1,35 +1,22 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Getting Started: Spring Boot CLI + Javascript</title>
+    <title>Steenfast Golf</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" href="/steenfastgolf.css"/>
+    <link rel="stylesheet" type="text/css" href="/login.css"/>
     <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <script src="webjars/jquery/2.2.2/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('p').animate({
-                fontSize: '48px'
-            }, "slow");
-        });
-    </script>
+    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div th:replace="fragments/navbar :: navigation"></div>
+<!--<div th:replace="fragments/navbar :: nav"></div>-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 col-lg-2">
             <img class="img-responsive hidden-sm hidden-xs" src="/left.jpg"/>
-        </div>
-        <div sec:authorize="isAuthenticated()">
-            <p>Welcome</p>
-        </div>
-        <div sec:authorize="isAnonymous()">
-            <form th:action="@{/login}" method="post">
-                <div><label> User Name : <input type="text" name="username"/> </label></div>
-                <div><label> Password: <input type="password" name="password"/> </label></div>
-                <div><input type="submit" value="Sign In"/></div>
-            </form>
         </div>
         <div class="col-md-8 col-lg-8">
             <div class="table-responsive">

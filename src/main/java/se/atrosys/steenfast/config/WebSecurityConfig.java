@@ -16,9 +16,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		// TODO re-enable, this is very important!
+		http.csrf().disable();
+
 		http.authorizeRequests()
 				.antMatchers(".*")
 				.permitAll();
+
+		http.formLogin()
+				.failureUrl("/login?error")
+				.defaultSuccessUrl("/tournaments")
+				.loginPage("/login")
+				.permitAll()
+		// TODO re-add remember me
+//				.and().rememberMe().tokenRepository(persistentTokenRepository())
+		;
 	}
 
 	@Override
