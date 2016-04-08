@@ -1,10 +1,7 @@
 package se.atrosys.steenfast.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.Singular;
 import lombok.experimental.Tolerate;
 
@@ -13,9 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import java.util.List;
-import java.util.SortedSet;
 
 /**
  * TODO write documentation

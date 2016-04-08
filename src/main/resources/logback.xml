@@ -20,8 +20,8 @@
     </appender>
 
 
-    <logger name="org.thymeleaf" level="debug"/>
-    <logger name="org.thymeleaf.TemplateEngine.CONFIG" level="info" />
+    <!--<logger name="org.thymeleaf" level="debug"/>-->
+    <!--<logger name="org.thymeleaf.TemplateEngine.CONFIG" level="info" />-->
     <logger name="org.springframework.security" level="debug" />
 
     <root level="INFO">

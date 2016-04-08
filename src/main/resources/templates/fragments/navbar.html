@@ -17,8 +17,12 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <div sec:authorize="isAnonymous()" th:replace="fragments/logindropdown :: loginform"></div>
-                        <div sec:authorize="hasRole('ROLE_USER')" th:replace="fragments/logout :: logoutform"></div>
+                        <li sec:authorize="isAnonymous()">
+                            <div th:replace="fragments/logindropdown :: loginform"></div>
+                        </li>
+                        <li sec:authorize="hasRole('ROLE_USER')">
+                            <div th:replace="fragments/logout :: logoutform"></div>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div>
