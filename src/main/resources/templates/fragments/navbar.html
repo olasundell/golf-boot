@@ -14,45 +14,18 @@
                     </button>
                 </div>
 
-                <div sec:authorize="isAuthenticated()">
-                    <p>Welcome</p>
-                </div>
-                <div sec:authorize="isAnonymous()">
-                </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                            <ul id="login-dp" class="dropdown-menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form" role="form" method="post" action="/login" accept-charset="UTF-8" id="login-nav">
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="username">Email address</label>
-                                                    <input type="email" class="form-control" id="username" placeholder="Email address"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="password">Password</label>
-                                                    <input type="password" class="form-control" id="password" placeholder="Password"/>
-                                                    <div class="help-block text-right"><a href="">Forgot the password?</a></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                                                </div>
-                                                <!-- TODO re-add remember me-->
-                                                <!--<div class="checkbox">-->
-                                                    <!--<label>-->
-                                                        <!--<input type="checkbox" id="remember-me"/> keep me logged-in-->
-                                                    <!--</label>-->
-                                                <!--</div>-->
-                                            </form>
-                                        </div>
-                                    </div>
+                            <div sec:authorize="isAnonymous()">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                                    <div th:replace="fragments/logindropdown :: loginform"></div>
                                 </li>
-                            </ul>
-                        </li>
+                            </div>
+                            <div sec:authorize="hasRole('ROLE_USER')">
+                                <div th:replace="fragments/logout :: logoutform"></div>
+                            </div>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div>

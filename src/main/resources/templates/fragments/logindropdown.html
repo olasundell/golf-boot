@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<ul id="login-dp" class="dropdown-menu" th:fragment="loginform">
+    <li>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form" role="form" method="post" th:action="@{/login}" accept-charset="UTF-8" id="login-nav">
+                    <div class="form-group">
+                        <label class="sr-only" for="username">Email address</label>
+                        <input type="email" name="username" class="form-control" id="username" placeholder="Email address"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password"/>
+                        <div class="help-block text-right"><a href="">Forgot the password?</a></div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                    </div>
+                    <!-- TODO re-add remember me-->
+                    <!--<div class="checkbox">-->
+                    <!--<label>-->
+                    <!--<input type="checkbox" id="remember-me"/> keep me logged-in-->
+                    <!--</label>-->
+                    <!--</div>-->
+                </form>
+            </div>
+        </div>
+    </li>
+</ul>
+</body>
+</html>

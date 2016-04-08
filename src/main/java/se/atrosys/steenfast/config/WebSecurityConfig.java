@@ -1,5 +1,6 @@
 package se.atrosys.steenfast.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -20,21 +21,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 
 		http.authorizeRequests()
-				.antMatchers(".*")
-				.permitAll();
-
-		http.formLogin()
+			.anyRequest()
+				.permitAll()
+			.and().formLogin()
 				.failureUrl("/login?error")
 				.defaultSuccessUrl("/tournaments")
 				.loginPage("/login")
+				.passwordParameter("password")
+				.usernameParameter("username")
+				.permitAll()
+			.and()
+				.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/tournaments")
 				.permitAll()
 		// TODO re-add remember me
 //				.and().rememberMe().tokenRepository(persistentTokenRepository())
 		;
 	}
-
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth
+//				.inMemoryAuthentication()
+//				.withUser("user").password("password").roles("USER");
+		auth.inMemoryAuthentication().withUser("ola@foo.bar").password("password").roles("USER");
 	}
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication().withUser("ola@foo.bar").password("password").roles("USER");
+//	}
 }
