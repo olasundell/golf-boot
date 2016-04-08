@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<li class="dropdown" th:fragment="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <b sec:authorize="hasRole('ROLE_USER')" sec:authentication="name"></b>
+        <b sec:authorize="isAnonymous()">Login</b>
+        <span class="caret"></span>
+    </a>
+    <ul id="login-dp" class="dropdown-menu">
+        <li>
+        <li sec:authorize="isAnonymous()">
+            <div th:replace="fragments/login :: loginform"></div>
+        </li>
+        <li sec:authorize="hasRole('ROLE_USER')">
+            <div th:replace="fragments/logout :: logoutform"></div>
+        </li>
+        </li>
+    </ul>
+</li>
+</body>
+</html>

@@ -7,3 +7,5 @@ build/*
 out/*
 */build/*
 .DS_Store
+classes/*
+target/*
